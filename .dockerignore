@@ -1,0 +1,9 @@
+README.md
+.git
+.claude
+node_modules
+__pycache__
+*.pyc
+engine/src/stockfish
+engine/src/*.o
+engine/engine_server

@@ -1,0 +1,114 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "KaiTi", "STKaiti", "Noto Serif CJK SC", "Microsoft YaHei", serif;
+  background: linear-gradient(135deg, #d4a76a 0%, #b8860b 30%, #8b6914 70%, #6b4f12 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  user-select: none;
+}
+
+#game-container {
+  position: relative;
+  background: #f5e6ca;
+  border-radius: 10px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+  padding: 15px;
+}
+
+canvas {
+  display: block;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#status-bar {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 18px;
+  color: #3d2b1f;
+  font-weight: bold;
+}
+
+/* ── Overlays ── */
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  border-radius: 10px;
+}
+
+#mode-overlay {
+  background: rgba(61, 43, 31, 0.85);
+}
+
+#mode-overlay h2 {
+  color: #f5e6ca;
+  font-size: 28px;
+  margin-bottom: 30px;
+  letter-spacing: 6px;
+}
+
+.btn {
+  font-size: 20px;
+  padding: 14px 40px;
+  margin: 10px;
+  border: 2px solid #c4a66a;
+  border-radius: 8px;
+  cursor: pointer;
+  background: linear-gradient(180deg, #5c3d2e 0%, #3d2b1f 100%);
+  color: #f5e6ca;
+  letter-spacing: 4px;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.btn:hover {
+  background: linear-gradient(180deg, #7a4f3a 0%, #5c3d2e 100%);
+  border-color: #e8d9b5;
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* ── Game over overlay ── */
+
+#game-over-overlay {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+#game-over-overlay h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  letter-spacing: 8px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+#game-over-overlay .btn {
+  background: linear-gradient(180deg, #c0392b 0%, #922b21 100%);
+  border-color: #e74c3c;
+}
+
+#game-over-overlay .btn:hover {
+  background: linear-gradient(180deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.hidden {
+  display: none !important;
+}

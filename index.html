@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中国象棋 - Chinese Chess</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="game-container">
+    <canvas id="board-canvas"></canvas>
+    <div id="status-bar"><span id="status-text">当前: 红方</span></div>
+
+    <!-- Mode selection -->
+    <div id="mode-overlay" class="overlay">
+      <h2>中 国 象 棋</h2>
+      <button id="btn-pvp" class="btn">双人对战</button>
+      <button id="btn-pve" class="btn">人机对弈(JS)</button>
+      <button id="btn-engine" class="btn">引擎对战(C++)</button>
+    </div>
+
+    <!-- Game over -->
+    <div id="game-over-overlay" class="overlay hidden">
+      <h2 id="game-result"></h2>
+      <button id="btn-new-game" class="btn">重新开始</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { GAME_MODE } from './utils/constants.js';
+    import { GameController } from './controllers/GameController.js';
+    import { BoardView } from './views/BoardView.js';
+
+    const canvas = document.getElementById('board-canvas');
+
+    // Create controller first (passing view will be set up after)
+    const controller = new GameController(null);
+    const view = new BoardView(canvas, controller);
+
+    // Wire up
+    controller.view = view;
+
+    document.getElementById('btn-pvp').addEventListener('click', () => {
+      controller.ai?.abort();
+      controller.startGame(GAME_MODE.PVP);
+    });
+
+    document.getElementById('btn-pve').addEventListener('click', () => {
+      controller.startGame(GAME_MODE.PVE);
+    });
+
+    document.getElementById('btn-engine').addEventListener('click', () => {
+      controller.startGame(GAME_MODE.ENGINE);
+    });
+
+    document.getElementById('btn-new-game').addEventListener('click', () => {
+      controller.ai?.abort();
+      view.showModeSelection();
+    });
+
+    // Show mode selection on load
+    view.showModeSelection();
+  </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# ── 中国象棋 Docker Compose ──
+# 启动: docker compose up -d
+# 自定义端口: FRONTEND_PORT=3000 ENGINE_PORT=9999 docker compose up -d
+# 停止: docker compose down
+
+services:
+  chinese-chess:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: chinese-chess:latest
+    container_name: chinese-chess
+    ports:
+      - "${FRONTEND_PORT:-8080}:${FRONTEND_PORT:-8080}"
+      - "${ENGINE_PORT:-9090}:${ENGINE_PORT:-9090}"
+    environment:
+      - FRONTEND_PORT=${FRONTEND_PORT:-8080}
+      - ENGINE_PORT=${ENGINE_PORT:-9090}
+    restart: unless-stopped

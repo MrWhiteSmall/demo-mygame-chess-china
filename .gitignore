@@ -1,0 +1,23 @@
+# 日志
+tmp.log
+
+# 编译产物
+engine/engine_server
+engine/src/stockfish
+engine/src/*.o
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.pyc
+
+# Docker（镜像不入库）
+# docker-compose.yml 和 Dockerfile 保留
