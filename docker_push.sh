@@ -14,12 +14,8 @@ TAG="${1:-latest}"
 FULL_IMAGE="${REGISTRY}/${NAMESPACE}/${IMAGE}:${TAG}"
 
 echo "=== 推送镜像: ${FULL_IMAGE} ==="
-
-# 检查登录状态
-if ! docker info 2>/dev/null | grep -q "Username"; then
-  echo "未登录，请先执行: docker login --username=你的用户名 ${REGISTRY}"
-  exit 1
-fi
+echo "如需登录: docker login --username=你的用户名 ${REGISTRY}"
+echo ""
 
 docker tag "${IMAGE}:latest" "${FULL_IMAGE}"
 docker push "${FULL_IMAGE}"
